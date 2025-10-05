@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    transition: background 0.5s ease;
+    transition: background 0.8s ease;
 }
 
 body.light {
@@ -30,7 +30,7 @@ body.dark {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    transition: all 0.5s ease;
+    transition: all 0.8s ease;
 }
 
 body.light .profile-card {
@@ -59,7 +59,7 @@ body.dark .profile-card {
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    transition: color 0.5s ease;
+    transition: color 0.8s ease;
 }
 
 body.light .profile-name {
@@ -76,7 +76,7 @@ body.dark .profile-name {
     font-weight: 500;
     height: 24px;
     margin-bottom: 40px;
-    transition: color 0.5s ease;
+    transition: color 0.8s ease;
 }
 
 body.light .profile-title {
@@ -141,8 +141,9 @@ body.dark .social-btn:hover {
     cursor: pointer;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, bottom 0.5s ease, opacity 0.5s ease;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
 }
 
 body.light .theme-toggle {
@@ -166,7 +167,7 @@ body.dark .theme-toggle {
     transform: translateX(-50%);
     font-size: 14px;
     opacity: 0.6;
-    transition: all 0.5s ease;
+    transition: all 0.8s ease;
     animation: fadeInOut 2s infinite;
 }
 
@@ -183,20 +184,25 @@ body.dark .click-hint {
     50% { opacity: 0.3; }
 }
 
-/* ===================================
-   TAMBAHKAN KE STYLE.CSS YANG UDAH ADA
-   Copy paste di bawah code style.css existing
-   =================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Portfolio Page Styles */
 
-/* Reset body untuk portfolio page */
 body.portfolio-page {
     display: block;
     padding: 0;
+    overflow-x: hidden;
 }
 
-/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -209,7 +215,7 @@ body.portfolio-page {
     z-index: 1000;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
+    transition: all 0.8s ease;
 }
 
 body.light .navbar {
@@ -252,7 +258,8 @@ body.dark .nav-links a {
     color: #ffffff;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: #667eea;
 }
 
@@ -264,6 +271,12 @@ body.dark .nav-links a {
     height: 40px;
     font-size: 20px;
     margin: 0;
+}
+
+body.portfolio-page .theme-toggle {
+    bottom: -100px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Hero Section */
@@ -291,7 +304,7 @@ body.dark .nav-links a {
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    transition: color 0.5s ease;
+    transition: color 0.8s ease;
 }
 
 body.light .hero-subtitle {
@@ -365,7 +378,7 @@ body.dark .btn-secondary:hover {
 /* Section */
 .section {
     padding: 5rem 5%;
-    min-height: 50vh;
+    min-height: auto;
 }
 
 .section-title {
@@ -383,7 +396,7 @@ body.dark .btn-secondary:hover {
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.8s ease;
 }
 
 body.light .glass-card {
@@ -405,21 +418,30 @@ body.dark .glass-card {
     line-height: 1.8;
 }
 
-body.light .about-card {
+.about-card p {
+    margin-bottom: 1rem;
+    transition: color 0.8s ease;
+}
+
+body.light .about-card p {
     color: #1a1a1a;
 }
 
-body.dark .about-card {
+body.dark .about-card p {
     color: #ffffff;
 }
 
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.skill-card {
+    transition: all 0.3s ease;
 }
 
 .skill-card:hover {
@@ -457,7 +479,7 @@ body.dark .skill-card:hover {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: all 0.8s ease;
 }
 
 body.light .tag {
@@ -484,6 +506,7 @@ body.dark .tag {
 .project-card {
     overflow: hidden;
     padding: 0;
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
@@ -512,14 +535,6 @@ body.dark .project-card:hover {
     padding: 2rem;
 }
 
-body.light .project-content {
-    color: #1a1a1a;
-}
-
-body.dark .project-content {
-    color: #ffffff;
-}
-
 .project-content h3 {
     color: #667eea;
     margin-bottom: 1rem;
@@ -528,6 +543,15 @@ body.dark .project-content {
 .project-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
+    transition: color 0.8s ease;
+}
+
+body.light .project-content p {
+    color: #1a1a1a;
+}
+
+body.dark .project-content p {
+    color: #ffffff;
 }
 
 /* Timeline */
@@ -556,6 +580,7 @@ body.dark .project-content {
 .timeline-title {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    transition: color 0.8s ease;
 }
 
 body.light .timeline-title {
@@ -569,6 +594,7 @@ body.dark .timeline-title {
 .timeline-company {
     margin-bottom: 1rem;
     font-style: italic;
+    transition: color 0.8s ease;
 }
 
 body.light .timeline-company {
@@ -582,6 +608,7 @@ body.dark .timeline-company {
 .timeline-list {
     margin-left: 1.5rem;
     line-height: 1.8;
+    transition: color 0.8s ease;
 }
 
 body.light .timeline-list {
@@ -622,6 +649,10 @@ body.dark .timeline-list {
     margin-bottom: 0.5rem;
 }
 
+.contact-card p {
+    transition: color 0.8s ease;
+}
+
 body.light .contact-card p {
     color: #1a1a1a;
 }
@@ -636,7 +667,7 @@ body.dark .contact-card p {
     padding: 2rem;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
+    transition: all 0.8s ease;
 }
 
 body.light .footer {
@@ -667,6 +698,11 @@ body.dark .footer {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .profile-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -695,5 +731,9 @@ body.dark .footer {
     .projects-grid,
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 3rem 5%;
     }
 }

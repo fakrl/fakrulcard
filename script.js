@@ -1,18 +1,36 @@
-// Theme Toggle
-const themeBtn = document.getElementById('themeBtn');
-const body = document.body;
+// Get or set theme from localStorage
+function getTheme() {
+    return localStorage.getItem('theme') || 'light';
+}
 
-themeBtn.addEventListener('click', () => {
-    if (body.classList.contains('light')) {
-        body.classList.remove('light');
-        body.classList.add('dark');
-        themeBtn.textContent = '☀️';
-    } else {
-        body.classList.remove('dark');
-        body.classList.add('light');
-        themeBtn.textContent = '🌙';
-    }
+function setTheme(theme) {
+    localStorage.setItem('theme', theme);
+    document.body.className = theme;
+    updateThemeButton(theme);
+}
+
+function updateThemeButton(theme) {
+    const themeBtns = document.querySelectorAll('.theme-toggle');
+    themeBtns.forEach(btn => {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    });
+}
+
+// Initialize theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = getTheme();
+    setTheme(savedTheme);
 });
+
+// Theme Toggle for index page
+const themeBtn = document.getElementById('themeBtn');
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = document.body.classList.contains('light') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+    });
+}
 
 // Animated Title
 const titles = [
@@ -25,57 +43,46 @@ const titles = [
 let currentIndex = 0;
 const titleElement = document.getElementById('animatedTitle');
 
-function changeTitle() {
-    titleElement.style.opacity = '0';
-    
-    setTimeout(() => {
-        currentIndex = (currentIndex + 1) % titles.length;
-        titleElement.textContent = titles[currentIndex];
-        titleElement.style.opacity = '1';
-    }, 500);
+if (titleElement) {
+    function changeTitle() {
+        titleElement.style.opacity = '0';
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % titles.length;
+            titleElement.textContent = titles[currentIndex];
+            titleElement.style.opacity = '1';
+        }, 500);
+    }
+
+    titleElement.style.transition = 'opacity 0.5s ease';
+    setInterval(changeTitle, 3000);
 }
 
-titleElement.style.transition = 'opacity 0.5s ease';
-setInterval(changeTitle, 3000);
-
-// Click anywhere to go to portfolio
-document.body.addEventListener('click', (e) => {
-    // Cek kalau yang diklik BUKAN card atau tombol theme
-    const card = document.querySelector('.profile-card');
-    const themeBtn = document.getElementById('themeBtn');
-    
-    if (!card.contains(e.target) && !themeBtn.contains(e.target)) {
-        // Redirect ke halaman portfolio
-        window.location.href = 'portfolio.html'; // Ganti dengan link halaman portfolio kamu
-    }
-});
-
-/* ===================================
-   TAMBAHKAN KE SCRIPT.JS YANG UDAH ADA
-   Copy paste di bawah code script.js existing
-   =================================== */
+// Click anywhere to go to portfolio (only on index page)
+const card = document.querySelector('.profile-card');
+if (card) {
+    document.body.addEventListener('click', (e) => {
+        const themeBtn = document.getElementById('themeBtn');
+        
+        if (!card.contains(e.target) && !themeBtn.contains(e.target)) {
+            window.location.href = 'portfolio.html';
+        }
+    });
+}
 
 // Portfolio Page Scripts
-// Cek apakah ini portfolio page
 const isPortfolioPage = document.querySelector('.navbar');
 
 if (isPortfolioPage) {
-    // Add portfolio-page class to body
     document.body.classList.add('portfolio-page');
     
     // Theme Toggle untuk Navbar
     const navThemeBtn = document.getElementById('navThemeBtn');
     if (navThemeBtn) {
         navThemeBtn.addEventListener('click', () => {
-            if (body.classList.contains('light')) {
-                body.classList.remove('light');
-                body.classList.add('dark');
-                navThemeBtn.textContent = '☀️';
-            } else {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                navThemeBtn.textContent = '🌙';
-            }
+            const currentTheme = document.body.classList.contains('light') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
         });
     }
 
@@ -110,7 +117,6 @@ if (isPortfolioPage) {
         });
     }, observerOptions);
 
-    // Observe all cards
     document.querySelectorAll('.glass-card').forEach(card => {
         observer.observe(card);
     });
