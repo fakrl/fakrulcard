@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Fakrul</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f8f9fa; }
+        .container { max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+        h1 { color: #2c3e50; }
+        ul { padding-left: 20px; }
+        .contact { margin-top: 30px; }
+        .chatbox { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        .chat-messages { height: 120px; overflow-y: auto; background: #f1f1f1; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+        .chat-input { width: 80%; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+        .chat-send { padding: 8px 16px; border-radius: 4px; border: none; background: #2c3e50; color: #fff; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fakrul's Portfolio</h1>
+        <p>Halo! Saya Fakrul, seorang pengembang web yang suka membangun aplikasi sederhana dan kreatif.</p>
+        <h2>Proyek Saya</h2>
+        <ul>
+            <li><strong>Fakrul Card</strong> - Kartu profil digital dengan desain minimalis.</li>
+            <li><strong>Website Pribadi</strong> - Situs web personal untuk berbagi portofolio dan blog.</li>
+            <li><strong>Mini Game JS</strong> - Permainan sederhana berbasis JavaScript.</li>
+        </ul>
+        <h2>Skill</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React & Node.js</li>
+            <li>UI/UX Design</li>
+        </ul>
+        <div class="contact">
+            <h2>Kontak</h2>
+            <p>Email: fakrul@email.com</p>
+            <p>GitHub: <a href="https://github.com/fahru" target="_blank">fahru</a></p>
+        </div>
+        <div class="chatbox">
+            <h2>Chat</h2>
+            <div class="chat-messages" id="chatMessages"></div>
+            <input class="chat-input" id="chatInput" type="text" placeholder="Ketik pesan..." />
+            <button class="chat-send" onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            if (input.value.trim() !== '') {
+                const msg = document.createElement('div');
+                msg.textContent = input.value;
+                messages.appendChild(msg);
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+        document.getElementById('chatInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

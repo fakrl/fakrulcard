@@ -37,3 +37,15 @@ function changeTitle() {
 
 titleElement.style.transition = 'opacity 0.5s ease';
 setInterval(changeTitle, 3000);
+
+// Click anywhere to go to portfolio
+document.body.addEventListener('click', (e) => {
+    // Cek kalau yang diklik BUKAN card atau tombol theme
+    const card = document.querySelector('.profile-card');
+    const themeBtn = document.getElementById('themeBtn');
+    
+    if (!card.contains(e.target) && !themeBtn.contains(e.target)) {
+        // Redirect ke halaman portfolio
+        window.location.href = 'portfolio.html'; // Ganti dengan link halaman portfolio kamu
+    }
+});

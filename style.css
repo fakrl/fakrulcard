@@ -50,7 +50,7 @@ body.dark .profile-card {
     margin: 0 auto 30px;
     display: block;
     object-fit: cover;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #000000 100%);
     border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -157,4 +157,28 @@ body.dark .theme-toggle {
 
 .theme-toggle:hover {
     transform: rotate(180deg) scale(1.1);
+}
+
+.click-hint {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+    animation: fadeInOut 2s infinite;
+}
+
+body.light .click-hint {
+    color: #666;
+}
+
+body.dark .click-hint {
+    color: #999;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
 }
