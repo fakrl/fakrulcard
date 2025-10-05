@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fakhrul Mukhlisin - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <meta name="description" content="Fakhrul Mukhlisin - PHP/Laravel Developer Portfolio">
+    <meta name="keywords" content="PHP, Laravel, Web Developer, Software Engineer">
+    <meta name="author" content="Fakhrul Mukhlisin">
+
+<!-- Open Graph for social media -->
+    <meta property="og:title" content="Fakhrul Mukhlisin - Portfolio">
+    <meta property="og:description" content="Software Developer specializing in PHP/Laravel">
+    <meta property="og:image" content="image/profile.jpg">
+    <meta property="og:url" content="https://yoursite.com">
+    </head>
 <body class="light">
     <!-- Navigation -->
     <nav class="navbar">
@@ -18,7 +27,7 @@
             <li><a href="#experience">Experience</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="theme-toggle nav-theme" id="navThemeBtn">🌙</button>
+        <button class="theme-toggle nav-theme" id="navThemeBtn" aria-label="Toggle Theme">🌙</button>
     </nav>
 
     <!-- Hero Section -->
@@ -37,11 +46,15 @@
     <section id="about" class="section">
         <h2 class="section-title">About Me</h2>
         <div class="glass-card about-card">
-            <p>Hi! I'm Fakhrul, an Information Systems student with a 3.67/4.0 GPA, passionate about web development and AI implementation. I specialize in PHP/Laravel stack development and have hands-on experience building responsive web solutions.</p>
-            <br>
-            <p>With experience in database management, SEO optimization, and leading 300+ member organizations, I combine technical expertise with strong leadership skills. I'm actively exploring AI technologies and implementing them into practical applications.</p>
-            <br>
-            <p>Currently seeking opportunities as a Software Developer where I can contribute to innovative projects and continue growing my technical skills.</p>
+            <p>
+                Hi! I'm Fakhrul, an Information Systems student with a 3.67/4.0 GPA, passionate about web development and AI implementation. I specialize in PHP/Laravel stack development and have hands-on experience building responsive web solutions.
+            </p>
+            <p>
+                With experience in database management, SEO optimization, and leading 300+ member organizations, I combine technical expertise with strong leadership skills. I'm actively exploring AI technologies and implementing them into practical applications.
+            </p>
+            <p>
+                Currently seeking opportunities as a Software Developer where I can contribute to innovative projects and continue growing my technical skills.
+            </p>
         </div>
     </section>
 
@@ -233,6 +246,16 @@
         </div>
     </footer>
 
+    <!-- Theme Toggle Script -->
+    <script>
+        const themeBtn = document.getElementById('navThemeBtn');
+        const body = document.body;
+        themeBtn.addEventListener('click', function () {
+            body.classList.toggle('dark');
+            body.classList.toggle('light');
+            themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
